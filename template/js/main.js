@@ -23,4 +23,4 @@ window.onload = () => {
 
   // 起動
   update();
-}
+};

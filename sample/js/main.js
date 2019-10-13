@@ -3,7 +3,7 @@ window.onload = () => {
   // canvas要素を取得
   const canvas = document.getElementById('mainCanvas');
   // 中心座標を設定する
-  const center = { x: 200, y: 200 };
+  const center = {x: 200, y: 200};
   // 文字盤の半径
   const faceRadius = 190;
   // canvasからcontextを取得する
@@ -82,4 +82,4 @@ window.onload = () => {
 
   // 起動
   update(ctx, center, faceRadius);
-}
+};
