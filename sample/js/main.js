@@ -12,9 +12,30 @@ window.onload = () => {
   ctx.strokeStyle = 'black';
   ctx.fillStyle = 'black';
 
+  // 更新処理
+  function update(ctx, center, faceRadius) {
+    // canvas全体をクリア
+    ctx.clearRect(0, 0, 400, 400);
+    // 文字盤描画
+    drawFace(ctx, center, faceRadius);
+    // 現在時間取得(滑らかに針を動かすため下の位の値を足している)
+    const now = new Date();
+    const seconds = now.getSeconds();
+    const minutes = now.getMinutes() + seconds / 60;
+    const hours = now.getHours() + minutes / 60;
+    // 秒針を描く
+    drawHand(ctx, center, seconds / 60 * Math.PI * 2 - Math.PI / 2, 180, 2);
+    // 分針を描く
+    drawHand(ctx, center, minutes / 60 * Math.PI * 2 - Math.PI / 2, 160, 4);
+    // 時針を描く
+    drawHand(ctx, center, hours / 12 * Math.PI * 2 - Math.PI / 2, 100, 10);
+
+    // 次の描画をブラウザに予約
+    requestAnimationFrame(() => update(ctx, center, faceRadius));
+  }
   //# 画面更新のときに使う関数を作る
   // 中心点,角度,半径から座標を計算する関数
-  function getPos (center, theta, radius) {
+  function getPos(center, theta, radius) {
     return {
       x: center.x + radius * Math.cos(theta),
       y: center.y + radius * Math.sin(theta),
@@ -48,7 +69,7 @@ window.onload = () => {
     }
   }
   // 針を描画する関数
-  function drawHand (ctx, center, theta, length, width) {
+  function drawHand(ctx, center, theta, length, width) {
     ctx.lineWidth = width;
     ctx.beginPath();
     ctx.moveTo(center.x, center.y);
@@ -56,28 +77,7 @@ window.onload = () => {
     ctx.lineTo(tip.x, tip.y);
     ctx.stroke();
   }
-
-  // 更新処理
-  function update(ctx, center, faceRadius) {
-    // canvas全体をクリア
-    ctx.clearRect(0, 0, 400, 400);
-    // 文字盤描画
-    drawFace(ctx, center, faceRadius);
-    // 現在時間取得(滑らかに針を動かすため下の位の値を足している)
-    const now = new Date();
-    const seconds = now.getSeconds();
-    const minutes = now.getMinutes() + seconds / 60;
-    const hours = now.getHours() + minutes / 60;
-    // 秒針を描く
-    drawHand(ctx, center, seconds / 60 * Math.PI * 2 - Math.PI / 2, 180, 2);
-    // 分針を描く
-    drawHand(ctx, center, minutes / 60 * Math.PI * 2 - Math.PI / 2, 160, 4);
-    // 時針を描く
-    drawHand(ctx, center, hours / 12 * Math.PI * 2 - Math.PI / 2, 100, 10);
-
-    // 次の描画をブラウザに予約
-    requestAnimationFrame(() => update(ctx, center, faceRadius));
-  }
+  
   // 起動
   update(ctx, center, faceRadius);
 }
