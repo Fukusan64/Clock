@@ -22,11 +22,29 @@ window.onload = () => {
     const minutes = now.getMinutes() + seconds / 60;
     const hours = now.getHours() + minutes / 60;
     // 秒針を描く
-    drawHand(ctx, center, seconds / 60 * Math.PI * 2 - Math.PI / 2, 180, 2);
+    drawHand(
+      ctx,
+      center,
+      seconds / 60 * Math.PI * 2 - Math.PI / 2,
+      180,
+      2
+    );
     // 分針を描く
-    drawHand(ctx, center, minutes / 60 * Math.PI * 2 - Math.PI / 2, 160, 4);
+    drawHand(
+      ctx,
+      center,
+      minutes / 60 * Math.PI * 2 - Math.PI / 2,
+      160,
+      4
+    );
     // 時針を描く
-    drawHand(ctx, center, hours / 12 * Math.PI * 2 - Math.PI / 2, 100, 10);
+    drawHand(
+      ctx,
+      center,
+      hours / 12 * Math.PI * 2 - Math.PI / 2,
+      100,
+      10
+    );
 
     // 次の描画をブラウザに予約
     requestAnimationFrame(() => update(ctx, center));
@@ -55,15 +73,32 @@ window.onload = () => {
     // 60回(0から59まで)ループを回す
     for (let i = 0; i < 60; i++) {
       //目盛りの丸の中心点を計算する
-      const scaleCenter = getPos(center, Math.PI * 2 / 60 * i, clockScaleRadius);
+      const scaleCenter = getPos(
+        center,
+        Math.PI * 2 / 60 * i,
+        clockScaleRadius
+      );
       ctx.beginPath();
       if (i % 5 == 0) {
-        // 5の倍数分(0,5,10,15,...55分)の目盛りを描く(大きめの丸を描く)
-        ctx.arc(scaleCenter.x, scaleCenter.y, 4, 0, Math.PI * 2);
+        // 5の倍数分(0,5,10,15,...55分)の目盛りを描く
+        //(大きめの丸を描く)
+        ctx.arc(
+          scaleCenter.x,
+          scaleCenter.y,
+          4,
+          0,
+          Math.PI * 2
+        );
         ctx.stroke();
       } else {
         // 5の倍数分以外の目盛りを描く(小さめの丸を塗りつぶす)
-        ctx.arc(scaleCenter.x, scaleCenter.y, 2, 0, Math.PI * 2);
+        ctx.arc(
+          scaleCenter.x,
+          scaleCenter.y,
+          2,
+          0,
+          Math.PI * 2
+        );
         ctx.fill();
       }
     }
