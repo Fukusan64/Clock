@@ -70,6 +70,7 @@ window.onload = () => {
       }
     }
   }
+
   // 針を描画する関数
   function drawHand(ctx, center, theta, length, width, color = 'black') {
     ctx.strokeStyle = color;

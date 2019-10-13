@@ -33,6 +33,7 @@ window.onload = () => {
     // 次の描画をブラウザに予約
     requestAnimationFrame(() => update(ctx, center, faceRadius));
   }
+
   //# 画面更新のときに使う関数を作る
   // 中心点,角度,半径から座標を計算する関数
   function getPos(center, theta, radius) {
@@ -68,6 +69,7 @@ window.onload = () => {
       }
     }
   }
+
   // 針を描画する関数
   function drawHand(ctx, center, theta, length, width) {
     ctx.lineWidth = width;
@@ -77,7 +79,7 @@ window.onload = () => {
     ctx.lineTo(tip.x, tip.y);
     ctx.stroke();
   }
-  
+
   // 起動
   update(ctx, center, faceRadius);
 }
