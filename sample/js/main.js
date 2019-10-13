@@ -10,7 +10,7 @@ window.onload = () => {
   ctx.strokeStyle = 'black';
   ctx.fillStyle = 'black';
 
-  // 更新処理
+  //# 更新処理
   function update(ctx, center) {
     // canvas全体をクリア
     ctx.clearRect(0, 0, 400, 400);
