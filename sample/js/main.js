@@ -4,8 +4,6 @@ window.onload = () => {
   const canvas = document.getElementById('mainCanvas');
   // 中心座標を設定する
   const center = {x: 200, y: 200};
-  // 文字盤の半径
-  const faceRadius = 190;
   // canvasからcontextを取得する
   const ctx = canvas.getContext('2d');
   // 塗りつぶしの色、線の色を黒に設定
@@ -13,11 +11,11 @@ window.onload = () => {
   ctx.fillStyle = 'black';
 
   // 更新処理
-  function update(ctx, center, faceRadius) {
+  function update(ctx, center) {
     // canvas全体をクリア
     ctx.clearRect(0, 0, 400, 400);
     // 文字盤描画
-    drawFace(ctx, center, faceRadius);
+    drawFace(ctx, center);
     // 現在時間取得(滑らかに針を動かすため下の位の値を足している)
     const now = new Date();
     const seconds = now.getSeconds();
@@ -31,7 +29,7 @@ window.onload = () => {
     drawHand(ctx, center, hours / 12 * Math.PI * 2 - Math.PI / 2, 100, 10);
 
     // 次の描画をブラウザに予約
-    requestAnimationFrame(() => update(ctx, center, faceRadius));
+    requestAnimationFrame(() => update(ctx, center));
   }
 
   //# 画面更新のときに使う関数を作る
@@ -44,10 +42,11 @@ window.onload = () => {
   }
 
   //文字盤を描画する関数
-  function drawFace(ctx, center, faceRadius) {
+  function drawFace(ctx, center) {
     // 枠
     ctx.lineWidth = 4;
     ctx.beginPath();
+    const faceRadius = 190;
     ctx.arc(center.x, center.y, faceRadius, 0, Math.PI * 2);
     ctx.stroke();
     // 目盛り
@@ -81,5 +80,5 @@ window.onload = () => {
   }
 
   // 起動
-  update(ctx, center, faceRadius);
+  update(ctx, center);
 };
