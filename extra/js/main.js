@@ -31,14 +31,6 @@ window.onload = () => {
     requestAnimationFrame(() => update(ctx, center));
   }
 
-  // 中心点と角度、半径から座標を計算する関数
-  function getPos(center, theta, radius) {
-    return {
-      x: center.x + radius * Math.cos(theta),
-      y: center.y + radius * Math.sin(theta),
-    };
-  }
-
   //文字盤を描画する関数
   function drawFace(ctx, center) {
     // 枠
@@ -89,6 +81,14 @@ window.onload = () => {
     ctx.moveTo(center.x, center.y);
     ctx.lineTo(end.x, end.y);
     ctx.stroke();
+  }
+
+  // 中心点と角度、半径から座標を計算する関数
+  function getPos(center, theta, radius) {
+    return {
+      x: center.x + radius * Math.cos(theta),
+      y: center.y + radius * Math.sin(theta),
+    };
   }
 
   // 起動

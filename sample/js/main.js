@@ -51,14 +51,6 @@ window.onload = () => {
   }
 
   //# 画面更新のときに使う関数を作る
-  // 中心点,角度,半径から座標を計算する関数
-  function getPos(center, theta, radius) {
-    return {
-      x: center.x + radius * Math.cos(theta),
-      y: center.y + radius * Math.sin(theta),
-    };
-  }
-
   //文字盤を描画する関数
   function drawFace(ctx, center) {
     // 枠
@@ -112,6 +104,14 @@ window.onload = () => {
     const tip = getPos(center, theta, length);
     ctx.lineTo(tip.x, tip.y);
     ctx.stroke();
+  }
+
+  // 中心点,角度,半径から座標を計算する関数
+  function getPos(center, theta, radius) {
+    return {
+      x: center.x + radius * Math.cos(theta),
+      y: center.y + radius * Math.sin(theta),
+    };
   }
 
   // 起動
