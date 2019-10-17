@@ -37,8 +37,7 @@ window.onload = () => {
     ctx.fillStyle = ctx.strokeStyle = 'black';
     ctx.lineWidth = 4;
     ctx.beginPath();
-    const faceRadius = 190;
-    ctx.arc(center.x, center.y, faceRadius, 0, Math.PI * 2);
+    ctx.arc(center.x, center.y, 190, 0, Math.PI * 2);
     ctx.stroke();
     // 目盛り
     const clockScaleRadius = 170;
