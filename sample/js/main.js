@@ -108,7 +108,7 @@ window.onload = () => {
   function getPos(center, theta, radius) {
     return {
       x: center.x + radius * Math.cos(theta),
-      y: center.y + radius * Math.sin(theta),
+      y: center.y + radius * Math.sin(theta)
     };
   }
 
